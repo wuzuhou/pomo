@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>登录</title>
+    <link rel="icon" type="image/ico" href="../static/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+  </head>
+  <body>
+      <div class="logo"><a href="https://pomotodo.com/"><img src="../static/images/pomotodo_cn.png"></a></div>
+      <div class="bigtitle">登录</div>
+      <form method="post">
+        <input class="input" type="text" name="email" placeholder="邮箱" required>
+        {% for message in get_flashed_messages() %}
+        <div class="alert">{{ message }}</div>
+        <input class="input" type="password" name="password" placeholder="密码" required>
+        <input class="submit" type="submit" value="登录">
+      </form>
+      <div class="forgot"><a href="forgot.html">忘记密码?</a></div>
+      <div class="signup"><a href="signup.html">创建账户</a></div>
+  </body>
+</html>

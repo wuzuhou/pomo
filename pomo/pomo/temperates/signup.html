@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>注册</title>
+    <link rel="icon" type="image/ico" href="../static/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+  </head>
+  <body>
+      <div class="logo"><a href="https://pomotodo.com/"><img src="../static/images/pomotodo_cn.png"></a></div>
+      <div class="bigtitle">注册</div>
+      <form method="post">
+      <input class="input" type="text" name="username" placeholder="名字" required>
+      {% for message in get_flashed_messages() %}
+      <div class="alert">{{ message }}</div>
+      <input class="input" type="text" name="email" placeholder="邮箱" required>
+      <input class="input" type="password" name="secret" placeholder="密码" required>
+      <input class="input" type="password" name="secret" placeholder="再次输入密码" required>
+      <input class="submit" type="submit" value="注册">
+      </form>
+      <div class="tip">点击注册，即表明您同意我们的 <a href="https://pomotodo.com/terms">服务条款</a> 和 <a href="https://pomotodo.com/privacy">隐私政策</a> </div>
+      <div class="tip">已有账号？<a href="login.html">登录</a></div>
+  </body>
+</html>
