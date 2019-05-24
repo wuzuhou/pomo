@@ -1,10 +1,10 @@
 import os
 import sys
 
-from flask import flask
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-# from flask_migrate import flask_migrate
+from flask_migrate import Migrate
 
 WIN = sys.platform.startswith('win')
 if WIN:
@@ -35,4 +35,5 @@ def inject_user():
     user = User.query.first()
     return dict(user=user)
 
-from pomo import views, errors, commands
+from pomo import views
+# errors, commands

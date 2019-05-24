@@ -5,8 +5,8 @@ from pomo import app, db
 from pomo.models import User
 import re
 
-
-@app.route('/login', method=['GET', 'POST'])
+@app.route('/')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         email = request.form['email']
@@ -23,7 +23,7 @@ def login():
         return render_template('login.html')
 
 
-@app.route('/signup', method=['GET', 'POST'])
+@app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
         str=r'^[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){0,4}@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){0,4}$'
@@ -42,10 +42,17 @@ def signup():
             login_user(user)
             return render_template(url_for('index'))
     else:
-        return render_template('signup')
+        return render_template('signup.html')
 
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
+@app.route('/forgot', methods=['GET', 'POST'])
+def forgot():
+    if request.method == 'post':
+        ...
+    else:
+        return render_template('forgot.html')

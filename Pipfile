@@ -6,6 +6,12 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+python-dotenv = "*"
+flask = "*"
+flask-login = "*"
+flask-sqlalchemy = "*"
+flask-migrate = "*"
+flask-session = "*"
 
 [requires]
 python_version = "3.7"

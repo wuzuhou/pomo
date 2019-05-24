@@ -13,12 +13,14 @@
       <input class="input" type="text" name="username" placeholder="名字" required>
       {% for message in get_flashed_messages() %}
       <div class="alert">{{ message }}</div>
+      {% endfor %}
       <input class="input" type="text" name="email" placeholder="邮箱" required>
       <input class="input" type="password" name="secret" placeholder="密码" required>
       <input class="input" type="password" name="secret" placeholder="再次输入密码" required>
       <input class="submit" type="submit" value="注册">
       </form>
-      <div class="tip">点击注册，即表明您同意我们的 <a href="https://pomotodo.com/terms">服务条款</a> 和 <a href="https://pomotodo.com/privacy">隐私政策</a> </div>
-      <div class="tip">已有账号？<a href="login.html">登录</a></div>
+      <div class="tip">点击注册，即表明您同意我们的 <a href="https://pomotodo.com/terms" target="_blank">服务条款</a>
+        和 <a href="https://pomotodo.com/privacy" target="_blank">隐私政策</a> </div>
+      <div class="tip">已有账号？<a href="{{url_for('login')}}">登录</a></div>
   </body>
 </html>
