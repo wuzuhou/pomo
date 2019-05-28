@@ -1,3 +1,4 @@
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from pomo import db
 
@@ -6,6 +7,8 @@ class User(db.Model, UserMixin):
     username =  db.Column(db.String(20))
     email = db.Column(db.String(20))
     password_hash = db.Column(db.String(128))
+    active = db.Column(db.Boolean, default=False)
+    activestrings = db.Column(db.String(128))
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)

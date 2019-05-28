@@ -4,7 +4,32 @@
     <meta charset="utf-8">
     <title>注册</title>
     <link rel="icon" type="image/ico" href="../static/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <link rel="stylesheet" type="text/css" href="../static/log-style.css">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript">
+      function validateEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email)
+      }
+      function validate() {
+        var email = $("#email").val();
+        if (validateEmail(email)) {
+          $("#wrongemail").css("display", "none");
+          $("#email").css("border","1px solid #E5E7E9");
+          console.log("right");
+        } else {
+          $("#wrongemail").css("display", "block");
+          $("#email").css("border","1px solid red");
+          console.log("wrong");
+        }
+        return false
+      }
+      $(document).ready(function(){
+        $("#email").blur(function(){
+          validate();
+        });
+      });
+    </script>
   </head>
   <body>
       <div class="logo"><a href="https://pomotodo.com/"><img src="../static/images/pomotodo_cn.png"></a></div>
@@ -14,9 +39,9 @@
       {% for message in get_flashed_messages() %}
       <div class="alert">{{ message }}</div>
       {% endfor %}
-      <input class="input" type="text" name="email" placeholder="邮箱" required>
-      <input class="input" type="password" name="secret" placeholder="密码" required>
-      <input class="input" type="password" name="secret" placeholder="再次输入密码" required>
+      <div class="alert" id="wrongemail" style="display:none">邮箱错误</div>
+      <input class="input" type="text" id="email" name="email" placeholder="邮箱" required>
+      <input class="input" type="password" name="password" placeholder="密码" required>
       <input class="submit" type="submit" value="注册">
       </form>
       <div class="tip">点击注册，即表明您同意我们的 <a href="https://pomotodo.com/terms" target="_blank">服务条款</a>

@@ -15,58 +15,65 @@ a {
   color: #E74C3C;
 }
 
-.logo {
-padding: 20px;
-}
-
-.bigtitle {
-  font-size: 40px;
-  margin: 30px 0 20px 0;
-  /* border: 1px red solid; */
-}
-
-.input {
-  font-size: 100%;
-  box-sizing: border-box;
-  width: 300px;
-  height: 40px;
-  margin: 5px;
-  padding: 8px;
-  border-radius: 4px;
-  border: 1px solid #E5E7E9;
-}
-
-.submit {
-  border: none;
-  background-color: #FF5733;
-  color: white;
-  width: 300px;
-  height: 40px;
-  margin: 15px;
-  padding: 8px;
-  border-radius: 4px;
-  font-size: 120%;
-}
-
-.forgot, .signup, .login {
-  width: 300px;
-  padding: 10px;
-}
-
-.tip {
-  width: 300px;
-  padding: 5px;
-}
-
-form {
+header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 1000px;
+  height: 30px;
+  padding: 5px 0;
+  border-bottom: 1px solid #D7DBDD;
+  /* background-color: red; */
+}
+
+.header-left, .header-right {
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
-.alert {
-  font-size: small;
-  color: red;
-  width: 300px;
-  height: 15px;
+.fanqietudou {
+  font-size: 23px;
+  font-weight: bold;
 }
+
+.green {
+  color: green;
+  padding-left: 8px;
+}
+
+.setting{
+  position: relative;
+  display: inline-block;
+}
+
+.settinglist {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.settinglist div {
+  color:black;
+  padding: 12px 16px;
+  display: block;
+  cursor: pointer;
+}
+.settingbtn {
+  cursor: pointer;
+}
+
+.setting:hover, .settinglist {
+  display: block;
+}
+
+.settinglist div {
+    color: black;
+    padding: 12px 16px;
+    /* text-decoration: none; */
+    display: block;
+}
+
+.settinglist div:hover {background-color: #f1f1f1;}

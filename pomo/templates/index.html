@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>番茄土豆</title>
+    <link rel="icon" type="image/ico" href="../static/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+  </head>
+  <body>
+    <header>
+      <div class="header-left">
+        <div class="fanqietudou">番茄土豆</div>
+        <div class="green">升级</div>
+      </div>
+      <div class="header-right">
+        <button type="button" name="button">旋转同步按钮</button>
+        <div class="setting">
+          <div class="settingbtn">{{ user.username }}下拉按钮</div>
+          <div class="settinglist">
+            <div class="account">账号</div>
+            <div class="favorite">偏好设置</div>
+            <div><a href="{{url_for('login')}}">登出</a></div>
+          </div>
+      </div>
+    </header>
+    <div class="topbar">
+      <div>点击右侧的图钉按钮可以让任务置顶 <img src="一个打勾的按钮" alt=""> </div>
+    </div>
+
+    <div class="middle">
+      <div class="middle-left">
+        <button class="startto" type="button" name="button">开始番茄</button>
+        <div class="record"></div>
+      </div>
+      <div class="middle-right">
+        <div><input type="text" name="potato" value="" placeholder="添加新任务"></input></div>
+        <div class="potatolist">
+          <ul>
+            <li>点击右侧的图钉按钮可以让任务置顶</li>
+            <li>置顶一个任务表示你打算在今天进行这个任务</li>
+            <li>点击 #标签 可以用这个 #标签 来筛选任务列表</li>
+            <li>置顶的第一个任务是专注任务</li>
+            <li>提交番茄时，点按任务描述，可以将描述填入输入框。</li>
+            <li>在任务尾部加上 "!!" 可以将其重要程度标记为 2</li>
+            <li>使用 #标签 可以归类整理你的任务</li>
+            <li>拖动任务进行排序</li>
+            <li>双击任务即可编辑</li>
+            <li>番茄土豆</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottombar">
+      <div class="tongji">
+        <div>统计</div>
+        <div>一周累计</div>
+        <div class="tongji-data">0123456789</div>
+      </div>
+      <div class="mubiao">
+        <div>目标</div>
+        <div>今日目标</div>
+        <div class="mubiao-data">0123456789</div>
+      </div>
+      <div class="tomotos">
+        <div>番茄历史</div>
+        <div>累计完成番茄</div>
+        <div class="tomotos-data">0123456789</div>
+      </div>
+      <div class="potatos">
+        <div>任务历史</div>
+        <div>累计完成任务</div>
+        <div class="potatos-data">0123456789</div>
+      </div>
+    </div>
+
+    <footer>
+      <small>
+        <div class="footer-left">
+          <div>@copy;番茄土豆</div>
+          <select name="languages">
+            <option value="简体中文">简体中文</option>
+            <option value="Deutsche">Deutsche</option>
+            <option value="Englisth">Englisth</option>
+            <option value="Español">Español</option>
+            <option value="Français">Français</option>
+            <option value="Italiano">Italiano</option>
+            <option value="日本語">日本語</option>
+            <option value="русский">русский</option>
+            <option value="繁體中文">繁體中文</option>
+          </select>
+        </div>
+        <div class="footer-right">
+          <div>高级版</div>
+          <div>应用程序</div>
+          <div>帮助</div>
+          <div>开发者</div>
+          <div>媒体报道</div>
+          <div>服务条款</div>
+        </div>
+      </small>
+    </footer>
+
+  </body>
+</html>
