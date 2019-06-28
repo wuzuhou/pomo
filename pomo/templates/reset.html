@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>番茄土豆</title>
+    <link rel="icon" type="image/ico" href="../static/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../static/log-style.css">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript">
+      function checkpassword() {
+        if ($("#password").val() == $('#passwordagain').val()) {
+          $("#wrongpassword").css("display", "none");
+          console.log("right");
+        } else {
+          $("#wrongpassword").css("display", "block");
+          console.log("wrong");
+        }
+        return false
+      }
+      $(document).ready(function(){
+        $("#passwordagain").blur(function(){
+          checkpassword();
+        });
+      });
+    </script>
+  </head>
+  <body>
+      <div class="resetlogo"><a href="https://pomotodo.com/"><img src="../static/images/pomotodo_cn.png"></a></div>
+      <div class="resetpassword">
+        <div class="resetbody">
+          <div class="resettitle"><div class="resettitle1">重置密码</div></div>
+          <form method="post" class="resetform">
+              <div>密码</div>
+              <input class="resetinput" type="password" id="password" name="password" required>
+              <div>确认密码</div>
+              <input class="resetinput" type="password" id="passwordagain" name="passwordagain" required>
+              <div class="alert" id="wrongpassword" style="display:none">密码不一致</div>
+              <input class="resetsubmit" type="submit" value="重置密码">
+          </form>
+        </div>
+      </div>
+  </body>
+</html>

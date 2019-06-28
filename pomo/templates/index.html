@@ -2,51 +2,199 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>番茄土豆</title>
+    <title class="titletime">番茄土豆</title>
     <link rel="icon" type="image/ico" href="../static/favicon.ico">
     <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script rel="stylesheet" type="text/javascript" src="../static/pomo.js"></script>
   </head>
-  <body>
+  <body class="body">
     <header>
       <div class="header-left">
         <div class="fanqietudou">番茄土豆</div>
-        <div class="green">升级</div>
+        <div><a class="green" href="{{url_for('pro')}}" target="_blank">升级</a></div>
       </div>
       <div class="header-right">
-        <button type="button" name="button">旋转同步按钮</button>
+        <i class="fa fa-refresh" aria-hidden="true" title="与服务器同步数据"></i>
         <div class="setting">
-          <div class="settingbtn">{{ user.username }}下拉按钮</div>
-          <div class="settinglist">
+          <div class="settingbtn">{{user.username}} <i class="fa fa-angle-down" aria-hidden="true"></i> </div>
+          <div class="settinglist" style="display:none;">
             <div class="account">账号</div>
             <div class="favorite">偏好设置</div>
             <div><a href="{{url_for('login')}}">登出</a></div>
           </div>
       </div>
     </header>
-    <div class="topbar">
-      <div>点击右侧的图钉按钮可以让任务置顶 <img src="一个打勾的按钮" alt=""> </div>
+    <div class="layer" style="display:none;"></div>
+    <div class="topbar" style="display:none;">
+      <span></span>
+      <i class="fa fa-check"></i>
     </div>
-
     <div class="middle">
       <div class="middle-left">
-        <button class="startto" type="button" name="button">开始番茄</button>
-        <div class="record"></div>
+        <button class="startto" type="button" name="button" style="cursor: pointer;">开始番茄</button>
+        <div class="timeclock" style="display:none;">
+          <span class="timemove" id="timemove"></span>
+          <span class="timeshow"></span>
+          <i class="fa fa-times-circle fa-lg timecancel" aria-hidden="true"></i>
+        </div>
+        <!-- 取消任务弹窗确认 -->
+        <div class="cancelcheck" style="display:none;" >
+          <div class="checkmes">您目前正在一个番茄工作时间中，要放弃这个番茄吗？</div>
+          <div class="checkbtn"><div class="confirm">确认</div> <div class="cancel">取消</div></div>
+        </div>
+        <div class="task" style="display:none;">
+          <input class="taskinput" type="text" name="task" value="" placeholder="你刚刚完成了什么工作">
+          <div id="recordsummit"><i  class="fa fa-level-down fa-rotate-90 fa-2x" aria-hidden="true" style="display:none;"></i></div>
+          <i class="fa fa-times-circle fa-lg timecancel" aria-hidden="true"></i>
+        </div>
+        <div class="record">
+          <div class="recordlogo"><i class="fa fa-history fa-5x" aria-hidden="true" style="color:#D7DBDD"></i></div>
+          <div class="norecord" style="color:#A6ACAF" >没有记录</div>
+        </div>
       </div>
       <div class="middle-right">
-        <div><input type="text" name="potato" value="" placeholder="添加新任务"></input></div>
+        <div class="addtask">
+          <input class="taskinput" type="text" name="potato" value="" placeholder="添加新任务">
+          <div id="tasksummit"><i class="fa fa-level-down fa-rotate-90 fa-2x" aria-hidden="true" style="display:none;"></i></div>
+        </div>
         <div class="potatolist">
           <ul>
-            <li>点击右侧的图钉按钮可以让任务置顶</li>
-            <li>置顶一个任务表示你打算在今天进行这个任务</li>
-            <li>点击 #标签 可以用这个 #标签 来筛选任务列表</li>
-            <li>置顶的第一个任务是专注任务</li>
-            <li>提交番茄时，点按任务描述，可以将描述填入输入框。</li>
-            <li>在任务尾部加上 "!!" 可以将其重要程度标记为 2</li>
-            <li>使用 #标签 可以归类整理你的任务</li>
-            <li>拖动任务进行排序</li>
-            <li>双击任务即可编辑</li>
-            <li>番茄土豆</li>
-          </ul>
+
+            <li >
+              <span>
+                <i class="fa fa-circle-o" style="font-size: 120%; opacity: 1;" title="完成任务"></i>
+              </span>
+              <input value="点击右侧的图钉按钮可以让任务置顶" type="text" disabled="disabled">
+              <span class="btns">
+                <i class="fa fa-ellipsis-h" title="修改高级属性" ></i>
+                <i class="fa fa-pencil-square-o" title="编辑任务"></i>
+                <i class="fa fa-arrow-up" title="置顶任务" ></i>
+              </span>
+            </li>
+
+            <li>
+              <span>
+                <i class="fa fa-circle-o" style="font-size: 120%; opacity: 1;" title="完成任务"></i>
+              </span>
+              <input value="置顶一个任务表示你打算在今天进行这个任务" type="text" disabled="disabled">
+              <span class="btns">
+                <i class="fa fa-ellipsis-h" title="修改高级属性" ></i>
+                <i class="fa fa-pencil-square-o" title="编辑任务"></i>
+                <i class="fa fa-arrow-up" title="置顶任务" ></i>
+              </span>
+            </li>
+
+            <li>
+              <span>
+                <i class="fa fa-circle-o" style="font-size: 120%; opacity: 1;" title="完成任务"></i>
+              </span>
+              <input value="点击 #标签 可以用这个 #标签 来筛选任务列表hahahahahahahahahah" type="text" disabled="disabled">
+              <span class="btns">
+                <i class="fa fa-ellipsis-h" title="修改高级属性" ></i>
+                <i class="fa fa-pencil-square-o" title="编辑任务"></i>
+                <i class="fa fa-arrow-up" title="置顶任务" ></i>
+              </span>
+            </li>
+
+            <li>
+              <span>
+                <i class="fa fa-circle-o" style="font-size: 120%; opacity: 1;" title="完成任务"></i>
+              </span>
+              <input value="置顶的第一个任务是专注任务" type="text" disabled="disabled">
+              <span class="btns">
+                <i class="fa fa-ellipsis-h" title="修改高级属性" ></i>
+                <i class="fa fa-pencil-square-o" title="编辑任务" ></i>
+                <i class="fa fa-arrow-up" title="置顶任务" ></i>
+              </span>
+            </li>
+
+            <li>
+              <span>
+                <i class="fa fa-circle-o" style="font-size: 120%; opacity: 1;" title="完成任务"></i>
+              </span>
+              <input value="提交番茄时，点按任务描述，可以将描述填入输入框" type="text" disabled="disabled">
+              <span class="btns">
+                <i class="fa fa-ellipsis-h" title="修改高级属性" ></i>
+                <i class="fa fa-pencil-square-o" title="编辑任务" ></i>
+                <i class="fa fa-arrow-up" title="置顶任务" ></i>
+              </span>
+            </li>
+
+            <li>
+              <span>
+                <i class="fa fa-circle-o" style="font-size: 120%; opacity: 1;" title="完成任务"></i>
+              </span>
+              <input value='在任务尾部加上 "!!" 可以将其重要程度标记为 2' type="text" disabled="disabled">
+              <span class="btns">
+                <i class="fa fa-ellipsis-h" title="修改高级属性" ></i>
+                <i class="fa fa-pencil-square-o" title="编辑任务" ></i>
+                <i class="fa fa-arrow-up" title="置顶任务" ></i>
+              </span>
+            </li>
+
+            <li>
+              <span>
+                <i class="fa fa-circle-o" style="font-size: 120%; opacity: 1;" title="完成任务"></i>
+              </span>
+              <input value="使用 #标签 可以归类整理你的任务" type="text" disabled="disabled">
+              <span class="btns">
+                <i class="fa fa-ellipsis-h" title="修改高级属性" ></i>
+                <i class="fa fa-pencil-square-o" title="编辑任务" ></i>
+                <i class="fa fa-arrow-up" title="置顶任务" ></i>
+              </span>
+            </li>
+
+            <li>
+              <span>
+                <i class="fa fa-circle-o" style="font-size: 120%; opacity: 1;" title="完成任务"></i>
+              </span>
+              <input value="拖动任务进行排序" type="text" disabled="disabled">
+              <span class="btns">
+                <i class="fa fa-ellipsis-h" title="修改高级属性" ></i>
+                <i class="fa fa-pencil-square-o" title="编辑任务" ></i>
+                <i class="fa fa-arrow-up" title="置顶任务" ></i>
+              </span>
+            </li>
+
+            <li>
+              <span>
+                <i class="fa fa-circle-o" style="font-size: 120%; opacity: 1;" title="完成任务"></i>
+              </span>
+              <input value="双击任务即可编辑" type="text" disabled="disabled">
+              <span class="btns">
+                <i class="fa fa-ellipsis-h" title="修改高级属性"></i>
+                <i class="fa fa-pencil-square-o" title="编辑任务"></i>
+                <i class="fa fa-arrow-up" title="置顶任务"></i>
+              </span>
+            </li>
+
+            <li>
+              <span>
+                <i class="fa fa-circle-o" style="font-size: 120%; opacity: 1;" title="完成任务"></i>
+              </span>
+              <input value="番茄土豆" type="text" disabled="disabled">
+              <span class="btns">
+                <i class="fa fa-ellipsis-h" title="修改高级属性" ></i>
+                <i class="fa fa-pencil-square-o" title="编辑任务" ></i>
+                <i class="fa fa-arrow-up" title="置顶任务" ></i>
+              </span>
+            </li>
+
+            <li>
+              <span>
+                <i class="fa fa-circle-o" style="font-size: 120%; opacity: 1;" title="完成任务"></i>
+              </span>
+              <input value="番茄土豆" type="text" disabled="disabled">
+              <span class="btns">
+                <i class="fa fa-ellipsis-h" title="修改高级属性" ></i>
+                <i class="fa fa-pencil-square-o" title="编辑任务" ></i>
+                <i class="fa fa-arrow-up" title="置顶任务" ></i>
+              </span>
+            </li>
+
         </div>
       </div>
     </div>

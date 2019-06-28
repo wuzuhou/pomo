@@ -15,3 +15,14 @@ class User(db.Model, UserMixin):
 
     def validate_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+class Potato():
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.DateTime)
+    tasknum = db.Column(db.Integer)
+    dailyRecords = db.Column(db.String(128))
+
+class Tomato():
+    id = db.Column(db.Integer, primary_key=True)
+    uptotop = db.Column(db.Boolean, default=False)
+    finish = db.Column(db.Boolean, default=False)
